@@ -51,9 +51,12 @@ llm = ChatGoogleGenerativeAI(
 # llm = ChatOllama(model="gemma3:270m", temperature=0.5)  # if using Ollama
 
 # Every LangChain component is a Runnable, meaning it has the same methods: invoke, stream, batch.
-# When you join them with |, the combined chain is also a Runnable, so it has those methods too.
+# When you join them with |, the combined chain is also a Runnable itself, so it has those methods too.
 chain = summary_prompt_template | llm | StrOutputParser()
 
 response = chain.invoke({"information": information})
+# When invoke() runs, it sends that dictionary to the first step of the chain (summary_prompt_template). 
+# The template looks up the key "information" in the dictionary, 
+# swaps {information} with your paragraph about Mukesh Ambani, and passes the completed prompt to llm.
 
 print(response)
