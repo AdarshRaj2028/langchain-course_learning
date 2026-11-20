@@ -55,8 +55,8 @@ llm = ChatGoogleGenerativeAI(
 chain = summary_prompt_template | llm | StrOutputParser()
 
 response = chain.invoke({"information": information})
-# When invoke() runs, it sends that dictionary to the first step of the chain (summary_prompt_template). 
-# The template looks up the key "information" in the dictionary, 
+# When invoke() runs, it sends that dictionary to the first step of the chain (summary_prompt_template).
+# The template looks up the key "information" in the dictionary,
 # swaps {information} with your paragraph about Mukesh Ambani, and passes the completed prompt to llm.
 
 print(response)
